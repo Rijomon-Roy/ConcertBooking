@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-bottom: 40px;
+}
+
+.booking-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.concert-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.ticket-btn {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.ticket-btn:hover {
+  background-color: #2563eb;
+}
+
+.booking-details {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.detail-item strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.no-bookings {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+  margin-top: 60px;
+}
+
+@media (max-width: 600px) {
+  .concert-title {
+    font-size: 1.2rem;
+  }
+
+  .ticket-btn {
+    margin-top: 10px;
+  }
+
+  .booking-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
