@@ -1,18 +1,27 @@
 // src/components/Layout/Layout.js
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "../Navbar/Navbar"; // Updated import path
+import { Outlet, useLocation } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 const Layout = ({ isLoggedIn, handleLogout }) => {
+  const location = useLocation();
+  const hideLayoutForRoutes = ["/admin-dashboard"];
+
+  const shouldHideLayout = hideLayoutForRoutes.includes(location.pathname);
+
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      {!shouldHideLayout && (
+        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      )}
       <main>
         <Outlet />
       </main>
-      <footer>
-        <p>&copy; 2025 Concert Booking. All rights reserved.</p>
-      </footer>
+      {!shouldHideLayout && (
+        <footer>
+          <p>&copy; 2025 Concert Booking. All rights reserved.</p>
+        </footer>
+      )}
     </>
   );
 };

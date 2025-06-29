@@ -24,17 +24,35 @@ function Login({ setIsLoggedIn, setUsername }) {
         { headers: { "Content-Type": "application/json" } }
       );
 
+      console.log("Login API response:", response.data);
+
       if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
+        const token = response.data.token;
+        console.log("Token:", token);
+        localStorage.setItem("token", token);
         setIsLoggedIn(true);
-        const decoded = jwtDecode(response.data.token); // Use jwtDecode here
+
+        const decoded = jwtDecode(token);
+        console.log("Decoded Token:", decoded);
+
+        if (!decoded || !decoded.role) {
+          console.error("Invalid token data:", decoded);
+        }
+
         setUsername(decoded?.username || "");
-        navigate("/");
+        const role = decoded?.role || "user";
+
+        if (role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/");
+        }
       } else {
         throw new Error("No token received");
       }
     } catch (err) {
-      // ... error handling
+      console.error("Login error:", err); // helpful debug
+      setError("Invalid email or password");
     } finally {
       setIsLoading(false);
     }
